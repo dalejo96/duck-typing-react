@@ -76,7 +76,7 @@ Routing
 
 Where addlet maps every component (this will come from BE messages through a Websocket) to using the SwitchYard
 
-```
+```ts
 {appReg.app_skeleton.components.map((comp, idx) => (
     <SwitchYard
         key={idx}
