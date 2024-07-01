@@ -1,3 +1,4 @@
+import { ImmutableMap } from '../utils/immutable';
 import { ComponentModel } from './Models';
 
 export type AppId = string;
@@ -14,6 +15,7 @@ export interface AppRegistration {
   app_id: AppId;
   app_name: AppName;
   app_skeleton: AppSkeleton;
+  out_command?: Command;
 }
 
 export interface Command {
@@ -26,4 +28,9 @@ export type StdComponentArgs<T> = {
   onCommand: (cmd: Command) => void;
   onComponentChange: (newComponent: T) => void;
   appInfo: [AppRegistration];
+};
+
+export type SuccessState = {
+  type: 'success';
+  apps: ImmutableMap<AppId, [AppRegistration]>;
 };
