@@ -18,6 +18,11 @@ export interface AppRegistration {
   out_command?: Command;
 }
 
+export type AppItem = {
+  app_id: AppId
+  app_name: AppName
+}
+
 export interface Command {
   '@': string;
   value: string;
