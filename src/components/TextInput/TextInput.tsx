@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import { InputBase } from '@mui/material';
@@ -8,8 +8,12 @@ const InputTextField: React.FC<{
   comp: TextInputModel;
   multiline: boolean;
 }> = ({ comp, multiline }) => {
+  const [inputValue, setInputValue] = useState(comp.value);
   const label = comp.text || '';
-  const inputValue = comp.value;
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
+  };
 
   return (
     <FormControl variant="standard" fullWidth>
@@ -19,8 +23,7 @@ const InputTextField: React.FC<{
         id={label}
         name={label}
         value={inputValue}
-        // TODO
-        //onChange={(event) => setValue(event.target.value)}
+        onChange={handleChange}
         sx={{
           width: '100%'
         }}

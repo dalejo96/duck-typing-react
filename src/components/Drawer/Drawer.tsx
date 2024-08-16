@@ -59,7 +59,7 @@ const Drawer: React.FC<{
               }}>
               All apps ({appList.length})
             </Typography>
-            <Addlet`1List appList={appList} closeFn={onClose} open={open} />
+            <AddletList appList={appList} closeFn={onClose} open={open} />
           </Box>
         </Box>
       </Box>
