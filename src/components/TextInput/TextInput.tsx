@@ -1,32 +1,33 @@
-import React from 'react';
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import { InputBase } from '@mui/material';
+import React, { useState } from 'react';
+import TextField from '@mui/material/TextField';
 import { TextInputModel } from '../../types/Models';
+import { Box } from '@mui/material';
 
 const InputTextField: React.FC<{
   comp: TextInputModel;
   multiline: boolean;
 }> = ({ comp, multiline }) => {
+  const [inputValue, setInputValue] = useState(comp.value);
   const label = comp.text || '';
-  const inputValue = comp.value;
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
+  };
 
   return (
-    <FormControl variant="standard" fullWidth>
-      <InputLabel shrink>{label}</InputLabel>
-      <InputBase
-        type="text"
+    <Box sx={{ margin: '8px 0px', width: '300px' }}>
+      <TextField
         id={label}
         name={label}
         value={inputValue}
-        // TODO
-        //onChange={(event) => setValue(event.target.value)}
-        sx={{
-          width: '100%'
-        }}
+        onChange={handleChange}
         multiline={multiline}
+        label={comp.text}
+        variant="outlined"
+        rows={6}
+        fullWidth
       />
-    </FormControl>
+    </Box>
   );
 };
 

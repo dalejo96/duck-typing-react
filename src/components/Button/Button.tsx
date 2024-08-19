@@ -8,9 +8,14 @@ const Button: React.FC<{
   comp: ButtonModel;
   onCommand: (cmd: Command) => void;
 }> = ({ comp }) => {
+  const handleClick = () => {
+    alert('doing stuff!');
+  };
+
   return (
     <MuiButton
       variant={comp.variant ?? 'contained'}
+      onClick={handleClick}
       endIcon={comp.icon && <Icon className={comp.icon} />}>
       {comp.text || 'Unknown'}
     </MuiButton>

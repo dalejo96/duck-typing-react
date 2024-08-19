@@ -1,3 +1,5 @@
+import { Nullable } from "./common";
+
 export type ImmutableMap<K, V> = {
   internal: Map<K, V>;
 };
@@ -20,6 +22,35 @@ export const imGet =
     return m.internal.get(k);
   };
 
+export const imSet =
+  <K, V>(m: ImmutableMap<K, V>) =>
+  (k: K, v: V): ImmutableMap<K, V> => {
+    const newMp = new Map(m.internal);
+    newMp.set(k, v);
+    return {
+      internal: newMp
+    };
+  };
+
 export const imToJS = <K, V>(m: ImmutableMap<K, V>) => {
   return m.internal;
+};
+
+export const zipWith = <L, R, T>(
+  l: Nullable<L[]>,
+  r: Nullable<R[]>,
+  fn: (a: L, b: R) => T
+): T[] => {
+  const useL = l || [];
+  const useR = r || [];
+  const lengthR = useR.length;
+  const res: T[] = [];
+  for (let index = 0; index < useL.length; index++) {
+    if (index < lengthR) {
+      const el = useL[index];
+      const er = useR[index];
+      res.push(fn(el, er));
+    }
+  }
+  return res;
 };

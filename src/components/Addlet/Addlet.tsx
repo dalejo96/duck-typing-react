@@ -31,7 +31,7 @@ const Addlet: React.FC<{
     return <NotFound message="Invalid app ID." />;
   }
 
-  const [appReg] = app;
+  const [, appReg] = app;
 
   const sendMsgHandler = async (cmd: Command, c?: ComponentModel): Promise<void> => {
     onAppChange!(id, { ...appReg, out_command: cmd });

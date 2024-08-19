@@ -1,5 +1,12 @@
-import { Action, AppId, AppRegistration, Command, StdComponentArgs } from '../types/Common';
+import {
+  AppRegistration,
+  Command,
+  ErrorState,
+  StdComponentArgs,
+  SuccessState
+} from '../types/Common';
 import { CheckboxModel, ComponentModel } from '../types/Models';
+import { AppMessage } from '../types/ws';
 
 export const adjustStdComponentArgs = (
   sc: StdComponentArgs<any>,
@@ -20,6 +27,8 @@ export const containerSetChild = (
 };
 
 export type Undefined = undefined | null;
+
+export type Nullable<T> = T | Undefined;
 
 export const isDefined = <T>(value: T | undefined | null): value is T => {
   return value !== undefined && value !== null;
@@ -65,7 +74,6 @@ export const setComponentRecursive =
     if (getUniqueId(oldcomp) === uniqueCid) {
       return [true, newcomp];
     } else if (Array.isArray(oldcomp.tchildren)) {
-      // this is fold we could go to a hack like above if slow
       const { match, cs } = oldcomp.tchildren.reduce(
         (acc: { match: boolean; cs: ComponentModel[] }, oldchild: ComponentModel) => {
           if (acc.match) return { match: true, cs: [...acc.cs, oldchild] };
@@ -100,20 +108,13 @@ export const getUniqueId = (component: ComponentModel): string => {
   return `${component.id || component.type}.${component.text || 'undefined-unique-id'}`;
 };
 
-export type Message = {
-  components?: ComponentModel[];
-  command?: Command;
-  actions?: Action[];
-  app_id: AppId;
-};
-
-export type FinalMessage = { type: 'msg'; payload: Message } | null;
+export type FinalMessage = { type: 'msg'; payload: AppMessage } | null;
 
 export const commandMessage =
   (appReg: AppRegistration) =>
   (cmd: Command): FinalMessage => {
     const appSkeleton = appReg.app_skeleton;
-    const payload: Message = {
+    const payload: AppMessage = {
       components: appSkeleton.components.map(cleanupOutMessage),
       command: cmd,
       actions: appSkeleton.actions,
@@ -131,3 +132,5 @@ const cleanupOutMessage = (component: ComponentModel): ComponentModel => {
 
   return res;
 };
+
+export type State = SuccessState | ErrorState;
