@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-d
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Addlet from './components/Addlet/Addlet';
-import Drawer from './components/Drawer/Drawer';
 import { AppId, AppRegistration, CtxMessage, emptyMsg } from './types/Common';
 import { FinalMessage, isUndefined } from './utils/common';
 import { stateOverApp, stateSetComponent, updateState } from './utils/state';
@@ -89,12 +88,6 @@ const App = () => {
                 position: 'relative',
                 marginTop: '1.5rem'
               }}>
-              <Drawer
-                appList={res.appList}
-                open={drawerOpen}
-                onOpen={() => setDrawerOpen(true)}
-                onClose={() => setDrawerOpen(false)}
-              />
               <Box
                 className="app-content"
                 sx={{

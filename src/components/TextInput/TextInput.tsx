@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import { InputBase } from '@mui/material';
+import TextField from '@mui/material/TextField';
 import { TextInputModel } from '../../types/Models';
 
 const InputTextField: React.FC<{
@@ -16,20 +14,15 @@ const InputTextField: React.FC<{
   };
 
   return (
-    <FormControl variant="standard" fullWidth>
-      <InputLabel shrink>{label}</InputLabel>
-      <InputBase
-        type="text"
-        id={label}
-        name={label}
-        value={inputValue}
-        onChange={handleChange}
-        sx={{
-          width: '100%'
-        }}
-        multiline={multiline}
-      />
-    </FormControl>
+    <TextField
+      id={label}
+      name={label}
+      value={inputValue}
+      onChange={handleChange}
+      multiline={multiline}
+      label={comp.text}
+      variant="outlined"
+    />
   );
 };
 

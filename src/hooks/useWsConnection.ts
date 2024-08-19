@@ -31,7 +31,6 @@ export function useWsConnection({ outMsg, inMsg }: WsConnectionParams): Websocke
   const [isLive, setIsLive] = useState(true);
   const [isTerminated, setIsTerminated] = useState(false);
 
-  //const platformWsUrl = 'wss://juvo.dev.jurisfutura.com/ms-platform-web/talk?guid=';
   const {
     heartbeatIntervalMS,
     maxDisconnectTimeMS,

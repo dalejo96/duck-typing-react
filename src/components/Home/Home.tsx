@@ -12,7 +12,6 @@ const Home: React.FC<{
 }> = ({ apps, onAllAppsClicked }) => {
   return (
     <Box
-      className="dashboard"
       sx={{
         display: 'flex',
         flexDirection: 'column',
@@ -54,7 +53,8 @@ const Home: React.FC<{
               marginBottom: { xs: '8px', md: 0 },
               padding: '20px 64px 20px 20px',
               gap: '8px',
-              background: (style) => style.palette.secondary.main,
+              color: 'white',
+              background: (style) => style.palette.primary.main,
               '&:hover': {
                 background: (style) => style.palette.primary.dark,
                 '*': {
@@ -73,7 +73,6 @@ const Home: React.FC<{
               {app.app_name}
             </Typography>
             <Box
-              className="recommended-app-arrow"
               sx={{
                 position: 'absolute',
                 top: 0,
@@ -86,27 +85,10 @@ const Home: React.FC<{
                 transition: 'transform 0.22s ease',
                 padding: '0 20px',
                 background: (style) => style.palette.secondary.main
-              }}>
-              <Icon
-                className="fa-sharp fa-solid fa-arrow-right"
-                sx={{
-                  color: (style) => `${style.palette.primary.main}!important`
-                }}></Icon>
-            </Box>
+              }}></Box>
           </Button>
         ))}
       </Box>
-      <Button
-        variant="outlined"
-        color="primary"
-        onClick={onAllAppsClicked}
-        sx={{
-          marginTop: '16px',
-          textTransform: 'capitalize'
-        }}
-        className="all-apps-btn">
-        {apps.length > 0 ? 'All Apps' : 'See All Apps'}
-      </Button>
     </Box>
   );
 };
