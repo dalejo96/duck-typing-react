@@ -17,27 +17,23 @@ const Accordion: React.FC<StdComponentArgs<AccordionModel>> = (props) => {
 
   return (
     <MuiAccordion
-      TransitionProps={{ mountOnEnter: true, unmountOnExit: true }}
       sx={{
         boxShadow: 'none !important',
         margin: '16px 0',
-        border: (theme) => `1px solid ${theme.palette.secondary.dark}`,
+        border: (theme) => `1px solid ${theme.palette.primary.dark}`,
         '.MuiAccordionSummary-root.Mui-expanded': {
           minHeight: '48px',
-          borderBottom: (theme) => `1px solid ${theme.palette.secondary.dark}`
+          borderBottom: (theme) => `1px solid ${theme.palette.primary.dark}`
         },
-        background: (theme) => alpha(theme.palette.secondary.main, 0.5),
+        background: (theme) => alpha(theme.palette.primary.main, 0.1),
         '&:before': {
           height: '0 !important'
         }
       }}>
       <AccordionSummary
-        expandIcon={
-          <IconButton className="fa fa-chevron-up" size="small" aria-label="open accordion" />
-        }
         sx={{
           flexDirection: 'row-reverse',
-          background: (theme) => theme.palette.secondary.main,
+          background: (theme) => theme.palette.primary.main,
           '.Mui-expanded': {
             margin: '12px 0 !important'
           },
@@ -51,7 +47,8 @@ const Accordion: React.FC<StdComponentArgs<AccordionModel>> = (props) => {
           sx={{
             marginLeft: '16px',
             letterSpacing: '0.15px',
-            lineHeight: '28px'
+            lineHeight: '28px',
+            color: 'white'
           }}>
           {comp.label}
         </Typography>

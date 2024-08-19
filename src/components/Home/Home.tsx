@@ -2,14 +2,12 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import Icon from '@mui/material/Icon';
 import { Box } from '@mui/material';
 import { AppItem } from '../../types/Common';
 
 const Home: React.FC<{
   apps: AppItem[];
-  onAllAppsClicked: () => void;
-}> = ({ apps, onAllAppsClicked }) => {
+}> = ({ apps }) => {
   return (
     <Box
       sx={{
@@ -19,14 +17,7 @@ const Home: React.FC<{
         textAlign: 'center',
         color: 'black'
       }}>
-      <Box
-        sx={{
-          padding: '36px 0',
-          marginBottom: '8px',
-          '& img': {
-            width: { xs: '300px', md: '400px' }
-          }
-        }}></Box>
+      <Typography variant="h5">Check your current apps below!</Typography>
       <Box
         sx={{
           width: { xs: '100%', md: '800px' },
@@ -41,7 +32,6 @@ const Home: React.FC<{
           <Button
             component={NavLink}
             to={`apps/${app.app_id}`}
-            className="recommended-app"
             key={app.app_id}
             sx={{
               width: '100%',

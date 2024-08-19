@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import { TextInputModel } from '../../types/Models';
+import { Box } from '@mui/material';
 
 const InputTextField: React.FC<{
   comp: TextInputModel;
@@ -14,15 +15,19 @@ const InputTextField: React.FC<{
   };
 
   return (
-    <TextField
-      id={label}
-      name={label}
-      value={inputValue}
-      onChange={handleChange}
-      multiline={multiline}
-      label={comp.text}
-      variant="outlined"
-    />
+    <Box sx={{ margin: '8px 0px', width: '300px' }}>
+      <TextField
+        id={label}
+        name={label}
+        value={inputValue}
+        onChange={handleChange}
+        multiline={multiline}
+        label={comp.text}
+        variant="outlined"
+        rows={6}
+        fullWidth
+      />
+    </Box>
   );
 };
 

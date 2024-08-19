@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
@@ -12,10 +12,13 @@ const CheckBoxField: React.FC<{
   onCommand: (cmd: Command) => void;
   onChange: (_: CheckboxModel) => void;
 }> = ({ comp, onChange }) => {
+  const [isChecked, setIsChecked] = useState(comp.value);
   // TODO
   /* const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange(userCheckboxAction(comp, e.target.checked));
   }; */
+
+  const handleClick = () => setIsChecked(!isChecked);
 
   const label = comp.text || '';
 
@@ -30,11 +33,9 @@ const CheckBoxField: React.FC<{
           <Checkbox
             icon={<CheckBoxOutlineBlankSharp />}
             checkedIcon={<CheckBoxSharp />}
-            checked={comp.value}
+            checked={isChecked}
             name={label}
-            onClick={() => {
-              // TODO
-            }}
+            onClick={handleClick}
           />
         }
       />

@@ -96,12 +96,7 @@ const App = () => {
                   overflowY: 'auto'
                 }}>
                 <Routes>
-                  <Route
-                    path="/"
-                    element={
-                      <Home apps={res.appList} onAllAppsClicked={() => setDrawerOpen(true)} />
-                    }
-                  />
+                  <Route path="/" element={<Home apps={res.appList} />} />
                   <Route
                     path="apps/:id"
                     element={
